@@ -6,7 +6,7 @@ public class SimpleStringBuffer {
 
     //Holds the size of the text buffer
     private int sz;
-    //Holds position of the text buffer
+    //Holds position of the cursor
     private int pos;
 
     //Holds the built string.
@@ -25,38 +25,76 @@ public class SimpleStringBuffer {
      * @param ch The character we want to insert
      */
     public void insert(char ch) {
+
+
+        //Create new string with new inserted element
         String newString = retString.substring(0, pos) + ch + retString.substring(pos, sz);
-        pos++;
         sz++;
+        pos++;
         retString = newString;
     }
 
+    /**
+     * Deletes the character to the left of cursor position and moves the cursor one position backwards
+     */
     public void delete() {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if(pos != 0){
+            String newString = retString.substring(0, pos-1) + retString.substring(pos, sz);
+            sz--;
+            pos--;
+            retString = newString;
+        }
+
     }
 
+    /**
+     * @return the position of the cursor
+     */
     public int getCursorPosition() {
-        throw new UnsupportedOperationException("Unimplemented method 'getCursorPosition'");
+        return pos;
     }
 
+    /**
+     * As long as the position of the cursor isn't at the ver y front, move the cursor one to the left
+     */
     public void moveLeft() {
-        throw new UnsupportedOperationException("Unimplemented method 'moveLeft'");
+        if(pos > 0){
+            pos--;
+        }
     }
 
+    /**
+     * As long as the position isn't at the end of the buffer move it one to the right
+     */
     public void moveRight() {
-        throw new UnsupportedOperationException("Unimplemented method 'moveRight'");
+        if(pos < sz){
+            pos++;
+        }
     }
 
+    /**
+     * 
+     * @return The size of the string buffer
+     */
     public int getSize() {
-        throw new UnsupportedOperationException("Unimplemented method 'getSize'");
+        return sz;
     }
 
+    /**
+     * 
+     * @param i The index of the character you want to get 
+     * @return The character at that index, Index out of bounds if it is greater
+     */
     public char getChar(int i) {
-        throw new UnsupportedOperationException("Unimplemented method 'getChar'");
+        if(i > sz){
+            throw new IndexOutOfBoundsException();
+        } else {
+            return retString.charAt(i);
+        }
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Unimplemented method 'toString'");
+        return retString;
     }
 }
