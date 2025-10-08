@@ -73,7 +73,7 @@ public class SimpleStringBuffer {
     }
 
     /**
-     * 
+     * Returns the size of the string buffer
      * @return The size of the string buffer
      */
     public int getSize() {
@@ -81,7 +81,7 @@ public class SimpleStringBuffer {
     }
 
     /**
-     * 
+     * Returns the char at the inputed index
      * @param i The index of the character you want to get 
      * @return The character at that index, Index out of bounds if it is greater
      */
@@ -93,6 +93,9 @@ public class SimpleStringBuffer {
         }
     }
 
+    /**
+     * Returns the built string
+     */
     @Override
     public String toString() {
         return retString;

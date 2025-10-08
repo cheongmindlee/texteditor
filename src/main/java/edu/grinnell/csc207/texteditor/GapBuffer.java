@@ -4,35 +4,149 @@ package edu.grinnell.csc207.texteditor;
  * A gap buffer-based implementation of a text buffer.
  */
 public class GapBuffer {
+    //Contains the built string
+    private char[] retString;
+    //The index of the text before the cursor
+    private int gapIndex;
+    //The index of the text after the cursor
+    private int afterIndex;
+    //The size occupied in the array
+    private int sz;
+
+    //The size of the array in the beginning
+    private int ARRAY_START_SIZE = 2;
+
+    /**
+     * Constructor for GapBuffer class, initializes variables required for a gapBuffer object
+     */
+    public GapBuffer(){
+        this.retString = new char[ARRAY_START_SIZE];
+        this.gapIndex = 0;
+        this.afterIndex = ARRAY_START_SIZE;
+        this.sz = ARRAY_START_SIZE;
+    }
+
+    /**
+     * Inserts a character into the string at the location of the cursor.
+     * @param ch character that is inserted
+     */
     public void insert(char ch) {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        //Insert the ch first
+        retString[gapIndex] = ch;
+        gapIndex++;
+        //Check if the retString needs to increase size
+        if(gapIndex >= sz - 1 || gapIndex == afterIndex){
+            //Double the array size
+            char[] newString = new char[sz * 2];
+
+            //Put the characters before cursor into the newString
+            for(int i =0; i<gapIndex; i++){
+                newString[i] = retString[i];
+            }
+
+
+            //Put the characters after cursor at the back of newString
+            for(int i=sz-1; i>=afterIndex; i--){
+                newString[i] = retString[i/2];
+            }
+            
+            //Set retString equal to this new larger array
+            retString = newString;
+
+            //Update variable values
+            int distanceFromEnd = sz - afterIndex;
+            sz = sz*2;
+            afterIndex = sz - distanceFromEnd;
+        }
     }
 
+    /**
+     * Deletes a char to the left of the build string as long as the cursor is not at the left most side
+     */
     public void delete() {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if(gapIndex > 0){
+            gapIndex--;
+        }
     }
 
+    /**
+     * @return position of the cursor
+     */
     public int getCursorPosition() {
-        throw new UnsupportedOperationException("Unimplemented method 'getCursorPosition'");
+        return gapIndex;
     }
 
+    /**
+     * Will move the cursor one to the left. If the cursor is at the left most position do nothing
+     * Decrease the afterIndex by one and move that character to the left of the cursor to the new afterIndex
+     */
     public void moveLeft() {
-        throw new UnsupportedOperationException("Unimplemented method 'moveLeft'");
+        if(gapIndex > 0){
+            retString[--afterIndex] = retString[--gapIndex];
+        }
     }
 
+    /**
+     * Will move the cursor one to the right. If the cursor is at the right most position do nothing
+     *  If there are no more elements to the right of cursor do nothing as well.
+     * Move the character at afterIndex position to gapIndex, and then increment gapIndex by one and increment
+     *  afterIndex by one
+     */
     public void moveRight() {
-        throw new UnsupportedOperationException("Unimplemented method 'moveRight'");
+        if(gapIndex < sz && afterIndex < sz){
+            retString[gapIndex++] = retString[afterIndex++];
+        }
     }
 
+    /**
+     * Returns the size of the string
+     * @return the size of the string
+     */
     public int getSize() {
-        throw new UnsupportedOperationException("Unimplemented method 'getSize'");
+        return gapIndex + (sz-afterIndex);
     }
 
+    /**
+     * Returns the character at the index inputed. If it does not exist return throw 
+     *  new IndexOutOfBoundsException();
+     * @param i the index of the ch
+     * @return the character at index i
+     */
     public char getChar(int i) {
-        throw new UnsupportedOperationException("Unimplemented method 'getChar'");
+        //Store the size of the gap 
+        int gapSize = afterIndex - gapIndex;
+        if(i < 0 || i >= sz - gapSize){
+            throw new IndexOutOfBoundsException();
+        } 
+        //Make sure that there actually is elements on the right side of cursor
+        // If there is no text to the right of the cursor then we do not have to
+        // worry about adding the gap size to get to the second half of the string
+        if(afterIndex >= sz){
+            return retString[i];
+        } else if(i < gapSize){
+            System.out.println("This code ran!");
+            return retString[i];
+        } else {
+            System.out.println("This code ran!");
+            return retString[i + gapSize];
+
+        }
     }
 
+    /**
+     * Returns a string implementation of the array retString
+     */
     public String toString() {
-        throw new UnsupportedOperationException("Unimplemented method 'toString'");
+
+        //build a string from the array of characters
+        String retString = "";
+        for (int i=0; i<gapIndex; i++){
+            retString = retString + this.retString[i];
+        }
+        for(int i=afterIndex; i<sz; i++){
+            retString = retString + this.retString[i];
+        }
+
+        return retString;
     }
 }
