@@ -91,7 +91,9 @@ public class TextEditor {
         try{
         Screen screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
-
+        
+        //If there is already existing string in the file first draw it onto the screen
+        drawBuffer(s, screen);
         //Until the user presses escape take in user input and do methods on our string
         while(isRunning){
             KeyStroke stroke = screen.readInput();
@@ -112,6 +114,8 @@ public class TextEditor {
 
         //If escape is presed exit the screen
         screen.stopScreen();
+        //Add the new created string in stringbuffer to the file
+        Files.writeString(path, s.toString());
         } catch (IOException e){
             e.printStackTrace();
         }
