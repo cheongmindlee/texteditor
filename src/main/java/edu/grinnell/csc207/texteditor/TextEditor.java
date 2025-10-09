@@ -26,24 +26,28 @@ public class TextEditor {
         //Set the row and columns 
         int row = 0;
         int col = 0;
+        int cursorCol = 0;
 
         //Write to the back buffer, and reset row if there is a return key pressed
         for(int i = 0; i < buf.getSize(); i++){
             if(buf.getChar(i) == '\n'){
                 row++;
                 col = 0;
-
-            } else {
-                //Draw the cursor before the char at the index of cursorPosition
-                if(i == buf.getCursorPosition()){
-                    screen.setCursorPosition(new TerminalPosition(buf.getCursorPosition(), row));
+                if(buf.getCursorPosition() == i+1){
+                    //Draw the cursor at the front of the new line, and then increment col one more incase there were char after the cursor
+                    screen.setCursorPosition(new TerminalPosition(col, row));
                     col++;
                 }
+            } else {
                 char c = buf.getChar(i);
-
                 //Is this col row or row col, why did row col not work - ask prof
                 screen.setCharacter(col, row, TextCharacter.fromCharacter(c)[0]); //This is array? So dumb.
                 col++;
+                //Draw the cursor after the inputted char
+                if(i+1 == buf.getCursorPosition()){
+                    screen.setCursorPosition(new TerminalPosition(col, row));
+                    col++;
+                }
             }
         }
 
