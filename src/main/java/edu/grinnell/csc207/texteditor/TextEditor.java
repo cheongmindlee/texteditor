@@ -26,7 +26,6 @@ public class TextEditor {
         //Set the row and columns 
         int row = 0;
         int col = 0;
-        int cursorCol = 0;
 
         //Write to the back buffer, and reset row if there is a return key pressed
         for(int i = 0; i < buf.getSize(); i++){
@@ -91,7 +90,7 @@ public class TextEditor {
         try{
         Screen screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
-        
+
         //If there is already existing string in the file first draw it onto the screen
         drawBuffer(s, screen);
         //Until the user presses escape take in user input and do methods on our string
@@ -109,6 +108,7 @@ public class TextEditor {
                 s.insert(stroke.getCharacter());
             }
 
+            //Draw to the screen once change has been made
             drawBuffer(s, screen);
         }
 
