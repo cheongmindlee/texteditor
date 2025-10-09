@@ -123,7 +123,7 @@ public class GapBuffer {
         // worry about adding the gap size to get to the second half of the string
         if(afterIndex >= sz){
             return retString[i];
-        } else if(i < gapSize){
+        } else if(i < gapIndex){
             return retString[i];
         } else {
             return retString[i + gapSize];
