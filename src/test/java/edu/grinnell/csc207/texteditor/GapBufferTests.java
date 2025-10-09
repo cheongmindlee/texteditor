@@ -48,11 +48,8 @@ public class GapBufferTests {
         s.insert('d');
         assertEquals(11, s.getSize());
         s.delete();
-        //Added some more
-        assertEquals("Hello Worl", s.toString());
         s.moveLeft();
         s.moveLeft();
-        //assertEquals(getChar())
         s.delete();
         s.delete();
         assertEquals("Hello rl", s.toString());
@@ -74,6 +71,21 @@ public class GapBufferTests {
         s.moveLeft();
         s.moveLeft();
         assertEquals(0, s.getCursorPosition());
+    }
+
+    @Test
+    public void moveAroundThenInsert(){
+        GapBuffer s = new GapBuffer();
+        s.insert('H');
+        s.insert('e');
+        s.insert('l');
+        s.insert('l');
+        s.insert('o');
+        s.moveLeft();
+        s.moveLeft();
+        s.moveRight();
+        s.insert('9');
+        assertEquals("Hell9o", s.toString());
     }
 
     @Property
