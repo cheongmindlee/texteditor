@@ -46,17 +46,17 @@ public class GapBuffer {
 
 
             //Put the characters after cursor at the back of newString
-            for(int i=sz-1; i>=afterIndex; i--){
-                newString[i] = retString[i/2];
+            int rightElCount = sz - afterIndex;
+            int newSz = 2*sz;
+            for(int i=newSz-rightElCount; i<newSz; i++){
+                newString[i] = retString[afterIndex++];
             }
             
             //Set retString equal to this new larger array
             retString = newString;
 
-            //Update variable values
-            int distanceFromEnd = sz - afterIndex;
-            sz = sz*2;
-            afterIndex = sz - distanceFromEnd;
+            sz = newSz;
+            afterIndex = sz - rightElCount;
         }
     }
 
@@ -124,10 +124,8 @@ public class GapBuffer {
         if(afterIndex >= sz){
             return retString[i];
         } else if(i < gapSize){
-            System.out.println("This code ran!");
             return retString[i];
         } else {
-            System.out.println("This code ran!");
             return retString[i + gapSize];
 
         }

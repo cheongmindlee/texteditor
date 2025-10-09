@@ -71,6 +71,13 @@ public class GapBufferTests {
         s.moveLeft();
         s.moveLeft();
         assertEquals(0, s.getCursorPosition());
+        assertEquals("He", s.toString());
+        s.insert('H');
+        s.insert('i');
+        //Where is the cursor after this
+        assertEquals(2, s.getCursorPosition());
+        assertEquals(4, s.getSize());
+        assertEquals("HiHe", s.toString());
     }
 
     @Test
