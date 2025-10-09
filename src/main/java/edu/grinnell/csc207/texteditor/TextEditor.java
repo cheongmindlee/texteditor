@@ -19,6 +19,12 @@ import com.googlecode.lanterna.screen.Screen;
  */
 public class TextEditor {
 
+    /**
+     * Draws the changes in the GapBuffer to the terminal.
+     * @param buf a GapBuffer object
+     * @param screen a Screen Object
+     * @throws IOException if it fails to update the screen throw an exception
+     */
     public static void drawBuffer(GapBuffer buf, Screen screen)throws IOException{
         //Clear the screen
         screen.clear();

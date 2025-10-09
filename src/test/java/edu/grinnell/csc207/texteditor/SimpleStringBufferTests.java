@@ -6,7 +6,6 @@ import net.jqwik.api.Property;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
 
 public class SimpleStringBufferTests {
