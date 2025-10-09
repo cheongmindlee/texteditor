@@ -20,6 +20,7 @@
   with text to the right of my cursor
 - Finished debugging and implementing TextEditor so that it can write to a file and output previous
   text inside the file to the terimnal if it existed.
+- sAdded final comments and updated ReadMe.
 
 ## Analyzing runtime of Insert in SimpleStringBuffer
 
