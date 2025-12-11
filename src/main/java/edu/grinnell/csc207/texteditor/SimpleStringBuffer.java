@@ -1,33 +1,36 @@
 package edu.grinnell.csc207.texteditor;
+
 /**
  * A naive implementation of a text buffer using a <code>String</code>.
  */
 public class SimpleStringBuffer {
 
-    //Holds the size of the text buffer
+    // Holds the size of the text buffer
     private int sz;
-    //Holds position of the cursor
+    // Holds position of the cursor
     private int pos;
 
-    //Holds the built string.
+    // Holds the built string.
     private String retString;
+
     /**
      * Creates an empty SimpleStringBuffer with sz = 0
      */
-    public SimpleStringBuffer(){
+    public SimpleStringBuffer() {
         this.sz = 0;
         this.pos = 0;
         this.retString = "";
     }
 
     /**
-     * Inserts a character at the current position of the cursor, and advances the cursor one position forward
+     * Inserts a character at the current position of the cursor, and advances the
+     * cursor one position forward
+     * 
      * @param ch The character we want to insert
      */
     public void insert(char ch) {
 
-
-        //Create new string with new inserted element
+        // Create new string with new inserted element
         String newString = retString.substring(0, pos) + ch + retString.substring(pos, sz);
         sz++;
         pos++;
@@ -35,11 +38,12 @@ public class SimpleStringBuffer {
     }
 
     /**
-     * Deletes the character to the left of cursor position and moves the cursor one position backwards
+     * Deletes the character to the left of cursor position and moves the cursor one
+     * position backwards
      */
     public void delete() {
-        if(pos != 0){
-            String newString = retString.substring(0, pos-1) + retString.substring(pos, sz);
+        if (pos != 0) {
+            String newString = retString.substring(0, pos - 1) + retString.substring(pos, sz);
             sz--;
             pos--;
             retString = newString;
@@ -55,25 +59,28 @@ public class SimpleStringBuffer {
     }
 
     /**
-     * As long as the position of the cursor isn't at the ver y front, move the cursor one to the left
+     * As long as the position of the cursor isn't at the ver y front, move the
+     * cursor one to the left
      */
     public void moveLeft() {
-        if(pos > 0){
+        if (pos > 0) {
             pos--;
         }
     }
 
     /**
-     * As long as the position isn't at the end of the buffer move it one to the right
+     * As long as the position isn't at the end of the buffer move it one to the
+     * right
      */
     public void moveRight() {
-        if(pos < sz){
+        if (pos < sz) {
             pos++;
         }
     }
 
     /**
      * Returns the size of the string buffer
+     * 
      * @return The size of the string buffer
      */
     public int getSize() {
@@ -82,11 +89,12 @@ public class SimpleStringBuffer {
 
     /**
      * Returns the char at the inputed index
-     * @param i The index of the character you want to get 
+     * 
+     * @param i The index of the character you want to get
      * @return The character at that index, Index out of bounds if it is greater
      */
     public char getChar(int i) {
-        if(i > sz){
+        if (i > sz) {
             throw new IndexOutOfBoundsException();
         } else {
             return retString.charAt(i);

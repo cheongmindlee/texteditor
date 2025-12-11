@@ -10,14 +10,14 @@ import net.jqwik.api.constraints.IntRange;
 
 public class GapBufferTests {
     @Test
-    public void insertInEmptyBuffer(){
+    public void insertInEmptyBuffer() {
         GapBuffer s = new GapBuffer();
         s.insert('H');
         assertEquals(1, s.getSize());
     }
 
     @Test
-    public void deleteOneElement(){
+    public void deleteOneElement() {
         GapBuffer s = new GapBuffer();
         s.insert('H');
         s.insert('e');
@@ -32,7 +32,7 @@ public class GapBufferTests {
     }
 
     @Test
-    public void deleteManyElements(){
+    public void deleteManyElements() {
         GapBuffer s = new GapBuffer();
         s.insert('H');
         s.insert('e');
@@ -57,7 +57,7 @@ public class GapBufferTests {
     }
 
     @Test
-    public void moveCursorAround(){
+    public void moveCursorAround() {
         GapBuffer s = new GapBuffer();
         s.insert('H');
         s.insert('e');
@@ -73,14 +73,14 @@ public class GapBufferTests {
         assertEquals("He", s.toString());
         s.insert('H');
         s.insert('i');
-        //Where is the cursor after this
+        // Where is the cursor after this
         assertEquals(2, s.getCursorPosition());
         assertEquals(4, s.getSize());
         assertEquals("HiHe", s.toString());
     }
 
     @Test
-    public void moveAroundThenInsert(){
+    public void moveAroundThenInsert() {
         GapBuffer s = new GapBuffer();
         s.insert('H');
         s.insert('e');
@@ -95,9 +95,9 @@ public class GapBufferTests {
     }
 
     @Property
-    public boolean insertElements(@ForAll @IntRange(min = 0, max = 1000) int sz){
+    public boolean insertElements(@ForAll @IntRange(min = 0, max = 1000) int sz) {
         GapBuffer s = new GapBuffer();
-        for(int i = 0; i<sz; i++){
+        for (int i = 0; i < sz; i++) {
             s.insert('a');
         }
         return sz == s.getSize();

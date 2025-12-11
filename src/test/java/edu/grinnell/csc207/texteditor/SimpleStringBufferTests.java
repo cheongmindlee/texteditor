@@ -10,14 +10,14 @@ import net.jqwik.api.constraints.IntRange;
 
 public class SimpleStringBufferTests {
     @Test
-    public void insertInEmptyBuffer(){
+    public void insertInEmptyBuffer() {
         SimpleStringBuffer s = new SimpleStringBuffer();
         s.insert('H');
         assertEquals(1, s.getSize());
     }
 
     @Test
-    public void deleteOneElement(){
+    public void deleteOneElement() {
         SimpleStringBuffer s = new SimpleStringBuffer();
         s.insert('H');
         s.insert('e');
@@ -32,7 +32,7 @@ public class SimpleStringBufferTests {
     }
 
     @Test
-    public void deleteManyElements(){
+    public void deleteManyElements() {
         SimpleStringBuffer s = new SimpleStringBuffer();
         s.insert('H');
         s.insert('e');
@@ -57,7 +57,7 @@ public class SimpleStringBufferTests {
     }
 
     @Test
-    public void moveCursorAround(){
+    public void moveCursorAround() {
         SimpleStringBuffer s = new SimpleStringBuffer();
         s.insert('H');
         s.insert('e');
@@ -73,9 +73,9 @@ public class SimpleStringBufferTests {
     }
 
     @Property
-    public boolean insertElements(@ForAll @IntRange(min = 0, max = 1000) int sz){
+    public boolean insertElements(@ForAll @IntRange(min = 0, max = 1000) int sz) {
         SimpleStringBuffer s = new SimpleStringBuffer();
-        for(int i = 0; i<sz; i++){
+        for (int i = 0; i < sz; i++) {
             s.insert('a');
         }
         return sz == s.getSize();

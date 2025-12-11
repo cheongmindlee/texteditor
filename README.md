@@ -22,6 +22,7 @@
   text inside the file to the terimnal if it existed.
 - sAdded final comments and updated ReadMe.
 
+- Changes done for Resubmission: I fixed all of my formatting errors and made sure no line was longer than 100 characters long
 ## Analyzing runtime of Insert in SimpleStringBuffer
 
 The input into insert is a character that we will insert into the backing string.
