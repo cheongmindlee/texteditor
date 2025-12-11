@@ -47,7 +47,7 @@ public class TextEditor {
             } else {
                 char c = buf.getChar(i);
                 // Is this col row or row col, why did row col not work - ask prof
-                screen.setCharacter(col, row, TextCharacter.fromCharacter(c)[0]); // This is array? So dumb.
+                screen.setCharacter(col, row, TextCharacter.fromCharacter(c)[0]);
                 col++;
                 // Draw the cursor after the inputted char
                 if (i + 1 == buf.getCursorPosition()) {

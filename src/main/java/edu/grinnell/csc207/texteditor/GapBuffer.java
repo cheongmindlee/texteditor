@@ -14,7 +14,7 @@ public class GapBuffer {
     private int sz;
 
     // The size of the array in the beginning
-    private int ARRAY_START_SIZE = 2;
+    private static final int ARRAY_START_SIZE = 2;
 
     /**
      * Constructor for GapBuffer class, initializes variables required for a
@@ -141,6 +141,8 @@ public class GapBuffer {
 
     /**
      * Returns a string implementation of the array retString
+     * 
+     * @return the built string
      */
     public String toString() {
 
